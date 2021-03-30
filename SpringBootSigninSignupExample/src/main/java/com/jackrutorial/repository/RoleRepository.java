@@ -1,0 +1,13 @@
+package com.jackrutorial.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.jackrutorial.model.Role;
+
+@Repository("roleReposistory")
+public interface RoleRepository extends JpaRepository<Role, Integer> {
+	
+	Role findByRole(String role);
+
+}
