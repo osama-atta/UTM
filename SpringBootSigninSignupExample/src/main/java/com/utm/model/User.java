@@ -1,4 +1,4 @@
-package com.jackrutorial.model;
+package com.utm.model;
 
 import java.util.Set;
 

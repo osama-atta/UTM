@@ -1,9 +1,9 @@
-package com.jackrutorial.repository;
+package com.utm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jackrutorial.model.User;
+import com.utm.model.User;
 
 @Repository("userReposistory")
 public interface UserRepository extends JpaRepository<User, Long> {

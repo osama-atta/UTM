@@ -1,4 +1,4 @@
-package com.jackrutorial.service;
+package com.utm.service;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jackrutorial.model.Role;
-import com.jackrutorial.model.User;
-import com.jackrutorial.repository.RoleRepository;
-import com.jackrutorial.repository.UserRepository;
+import com.utm.model.Role;
+import com.utm.model.User;
+import com.utm.repository.RoleRepository;
+import com.utm.repository.UserRepository;
 	
 @Service("userService")
 public class UserServiceImpl implements UserService {

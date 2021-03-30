@@ -1,4 +1,4 @@
-package com.jackrutorial.configuration;
+package com.utm.configuration;
 
 import javax.sql.DataSource;
 

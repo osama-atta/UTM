@@ -1,6 +1,6 @@
-package com.jackrutorial.service;
+package com.utm.service;
 
-import com.jackrutorial.model.User;
+import com.utm.model.User;
 
 public interface UserService {
 	

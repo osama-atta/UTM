@@ -1,4 +1,4 @@
-package com.jackrutorial.controller;
+package com.utm.controller;
 
 import javax.validation.Valid;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jackrutorial.model.User;
-import com.jackrutorial.service.UserService;
+import com.utm.model.User;
+import com.utm.service.UserService;
 
 @Controller
 public class userController {
