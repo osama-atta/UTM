@@ -100,6 +100,14 @@ public class User {
 	public void setActive(int active) {
 		this.active = active;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	
 	
 }
