@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.utm</groupId>
-	<artifactId>SpringBootSigninSignupExample</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
-	<name>SpringBootSigninSignupExample</name>
+	<artifactId>UTM</artifactId>
+	<version>0.0.3</version>
+	<name>SpringBootSigninSignup</name>
 	<description>User Time Management System</description>
 	<packaging>war</packaging>
 	<properties>
@@ -21,6 +21,11 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	<dependencies>
+	<dependency>
+  		<groupId>com.github.ulisesbocchio</groupId>
+  		<artifactId>jasypt-spring-boot-starter</artifactId>
+  		<version>3.0.3</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -88,11 +93,17 @@
 	</dependencies>
 
 	<build>
+	<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+   				<groupId>com.github.ulisesbocchio</groupId>
+   				<artifactId>jasypt-maven-plugin</artifactId>
+   				<version>3.0.3</version>
+ 			</plugin>
 		</plugins>
 	</build>
 
