@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Service;
+
+@Service
 @Entity
 @Table(name="timesheet")
 public class TimeSheet 
@@ -23,16 +26,16 @@ public class TimeSheet
 	private String date;
 	
 	@Column(name = "Start_time")
-	private String Start_time;
+	private String Starttime;
 	
 	@Column(name = "End_time")
-	private String End_time;
+	private String Endtime;
 	
 	@Column(name = "comments")
 	private String comments;
 	
 	@Column(name = "date_submitted")
-	private String date_submitted;
+	private String datesubmitted;
 
 	
 	public int getId() {
@@ -43,11 +46,11 @@ public class TimeSheet
 		this.id = id;
 	}
 
-	public int getEmployee_id() {
+	public int getEmployeeid() {
 		return employeeid;
 	}
 
-	public void setEmployee_id(int employee_id) {
+	public void setEmployeeid(int employee_id) {
 		this.employeeid = employee_id;
 	}
 
@@ -59,20 +62,20 @@ public class TimeSheet
 		this.date = date;
 	}
 
-	public String getStart_time() {
-		return Start_time;
+	public String getStarttime() {
+		return Starttime;
 	}
 
-	public void setStart_time(String start_time) {
-		Start_time = start_time;
+	public void setStarttime(String start_time) {
+		Starttime = start_time;
 	}
 
-	public String getEnd_time() {
-		return End_time;
+	public String getEndtime() {
+		return Endtime;
 	}
 
-	public void setEnd_time(String end_time) {
-		End_time = end_time;
+	public void setEndtime(String end_time) {
+		Endtime = end_time;
 	}
 
 	public String getComments() {
@@ -83,12 +86,12 @@ public class TimeSheet
 		this.comments = comments;
 	}
 
-	public String getDate_submitted() {
-		return date_submitted;
+	public String getDatesubmitted() {
+		return datesubmitted;
 	}
 
-	public void setDate_submitted(String date_submitted) {
-		this.date_submitted = date_submitted;
+	public void setDatesubmitted(String date_submitted) {
+		this.datesubmitted = date_submitted;
 	}
 	
 	
