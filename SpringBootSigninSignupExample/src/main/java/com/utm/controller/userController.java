@@ -58,14 +58,33 @@ public class userController {
 			userService.saveUser(user);
 			model.addObject("msg", "User had been registered Successfully");
 			model.addObject("user", user);
-			model.setViewName("user/signup");
+			model.setViewName("user/signup");//I would like to change this but when it redirects the message goes away. 
 		}
 		
 		return model;
 	}
 	
 	@RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
-	public ModelAndView home () {
+	public String homeHome () {
+		ModelAndView model = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
+		model.addObject("userid", user.getId());
+		model.addObject("timesheet", timesheet);
+		
+		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) //convert collection to a stream and look for anymatch 
+				{
+			return "redirect:/home/admin";
+				}
+		return "redirect:/home/employee";
+					
+		//model.setViewName("/home/home");
+		//return model;
+	}
+	
+	@RequestMapping(value= {"/home/admin"}, method=RequestMethod.GET)
+	public ModelAndView homeAdmin () {
 		ModelAndView model = new ModelAndView();
 		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
@@ -73,7 +92,19 @@ public class userController {
 		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
 		model.addObject("userid", user.getId());
 		model.addObject("timesheet", timesheet);
-		model.setViewName("/home/home");
+		model.setViewName("/home/admin");
+		return model;
+	}
+	@RequestMapping(value= {"/home/employee"}, method=RequestMethod.GET)
+	public ModelAndView homeEmployee () {
+		ModelAndView model = new ModelAndView();
+		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		
+		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
+		model.addObject("userid", user.getId());
+		model.addObject("timesheet", timesheet);
+		model.setViewName("/home/employee");
 		return model;
 	}
 	
