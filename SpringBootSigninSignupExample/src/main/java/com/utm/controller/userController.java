@@ -115,13 +115,4 @@ public class userController {
 		return model;
 	}
 	
-	@RequestMapping(value= {"/timesheet"}, method=RequestMethod.GET)
-	public ModelAndView saveTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
-		ModelAndView model = new ModelAndView();
-		tservice.Save(timesheet);
-		model.setViewName("/home/home");
-		return model;
-	}
-	
-	
 }
