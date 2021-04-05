@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		user.setActive(1);
-		Role userRole = roleRepository.findByRole("ADMIN");
+		Role userRole = roleRepository.findByRole("EMPLOYEE");
 		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		user.setAddress(user.getAddress());//trying to implement address in user save
 		userRepository.save(user);
