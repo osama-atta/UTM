@@ -9,18 +9,18 @@ import com.utm.repository.TimeSheetRepository;
 @Service
 public class TimeSheetService {
 	@Autowired
-	TimeSheetRepository repo;
+	TimeSheetRepository timeSheetRepository;
 	
 	public void Save(TimeSheet ts) {
-		repo.save(ts);
+		timeSheetRepository.save(ts);
 	}
 	
 	public TimeSheet GetTimeSheet(int employee_id) {
-		return repo.findByEmployeeid(employee_id);
+		return timeSheetRepository.findByEmployeeid(employee_id);
 	}
 	
 	public void DeleteTimeSheet(int employee_id) {
-		repo.deleteByEmployeeid(employee_id);
+		timeSheetRepository.deleteByEmployeeid(employee_id);
 	}
 	
 }

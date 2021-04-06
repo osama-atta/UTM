@@ -25,12 +25,12 @@ public class timesheetController {
 	@Autowired
 	private TimeSheet timesheet;
 	@Autowired
-	private TimeSheetService tservice;
+	private TimeSheetService timeSheetService;
 	
 	@RequestMapping(value= {"/timesheet"}, method=RequestMethod.GET)
 	public ModelAndView saveTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
 		ModelAndView model = new ModelAndView();
-		tservice.Save(timesheet);
+		timeSheetService.Save(timesheet);
 		model.setViewName("/home/home");
 		return model;
 	}
