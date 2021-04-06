@@ -27,7 +27,15 @@ public class userController {
 	@Autowired
 	private TimeSheetService tservice;
 	
-	@RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
+	
+	@RequestMapping(value= {"/"}, method=RequestMethod.GET)
+	public ModelAndView landingPage( ) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("user/index");
+		return model;
+	}
+	
+	@RequestMapping(value= {"/login"}, method=RequestMethod.GET)
 	public ModelAndView login( ) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("user/login");
