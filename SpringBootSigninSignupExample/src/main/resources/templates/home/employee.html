@@ -1,42 +1,192 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Home</title>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+	href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet'
+	href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {
+	font-family: "Open Sans", sans-serif
+}
+</style>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
 </head>
-<body>
-	<div class="container">
-		<h2>
-			Hi <span th:utext="${userName}"></span>, this is the home page.
-		</h2>
-		<a th:href="@{/timesheet}">View Timesheet</a>
-
-		<form action="#" th:action="@{/timesheet}" th:object="${timesheet}">
-			<label>Date</label><input type="text" th:name="date" th:id="date"
-				required th:field="*{date}"> <label>Employee Id</label><input
-				type="number" th:name="employeeid" readonly required th:value=${userid}
-				th:id="employeeid" > <label>Start time</label><input
-				type="text" th:name="starttime" required th:id="starttime"
-				th:field="*{starttime}"> <label>End time</label><input
-				type="text" th:name="endtime" required th:field="*{endtime}">
-			<label>Date Submitted</label><input type="text"
-				th:name="datesubmitted" th:id="datesubmitted" required
-				th:field="*{datesubmitted}"> <label>Comments</label><input
-				type="text" th:name="comments" required th:field="*{comments}">
-				<button type="submit"> Save TimeSheet</button>
-		</form>
-
-
-		<a th:href="@{/logout}">Sign out</a>
+<body class="w3-theme-l5">
+	<!-- Top container -->
+	<div class="w3-bar w3-top w3-black w3-large" style="z-index: 4">
+		<button
+			class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey"
+			onclick="w3_open();">
+			<i class="fa fa-bars"></i> Menu
+		</button>
+		<span class="w3-bar-item w3-right">GROUP77</span>
 	</div>
+
+	<!-- Sidebar/menu -->
+	<nav class="w3-sidebar w3-collapse w3-white w3-animate-left"
+		style="z-index: 3; width: 300px;" id="mySidebar">
+		<br>
+		<div class="w3-container w3-row">
+			<div class="w3-col s4">
+				<img src="/img/userico.ico" class="w3-circle w3-margin-right"
+					style="width: 46px">
+			</div>
+			<div class="w3-col s8 w3-bar">
+				<span>Welcome, <strong><span th:utext="${userName}"></span></strong></span><br>
+				<a href="#" class="w3-bar-item w3-button"><i
+					class="fa fa-envelope"></i></a> <a th:href="@{/profile}"
+					class="w3-bar-item w3-button"><i class="fa fa-user"></i></a> <a
+					href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+			</div>
+		</div>
+		<hr>
+		<div class="w3-container">
+			<h5>Dashboard</h5>
+		</div>
+		<div class="w3-bar-block">
+			<a href="#"
+				class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
+				onclick="w3_close()" title="close menu"><i
+				class="fa fa-remove fa-fw"></i>  Close Menu</a> <a href="#"
+				class="w3-bar-item w3-button w3-padding w3-blue"><i
+				class="fa fa-users fa-fw"></i>  Overview</a> <a href="schedule"
+				class="w3-bar-item w3-button w3-padding"><img
+				src="/img/calendar.ico" style="width: 16px" />  View schedule </a> <a
+				href="report" class="w3-bar-item w3-button"> <img
+				src="/img/report.ico" style="width: 16px" /> Make a report
+			</a> <a href="#" class="w3-bar-item w3-button w3-padding"><img
+				src="/img/request.ico" style="width: 16px" />  Requests </a> <a
+				href="#" class="w3-bar-item w3-button w3-padding"> <img
+				src="/img/time.ico" style="width: 16px" /> Hours Worked
+			</a> <a href="#" class="w3-bar-item w3-button w3-padding"><i
+				class="fa fa-bell" aria-hidden="true"></i> Notifications</a> <a
+				th:href="@{resetPassword}" class="w3-bar-item w3-button w3-padding"><img
+				src="/img/key.ico" style="width: 16px" />  Reset Password </a> <a
+				th:href="@{/logout}" class="w3-bar-item w3-button w3-padding"><i
+				class="fa fa-sign-out"></i> Sign Out </a>
+		</div>
+	</nav>
+
+
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large w3-animate-opacity"
+		onclick="w3_close()" style="cursor: pointer" title="close side menu"
+		id="myOverlay"></div>
+
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left: 300px; margin-top: 43px;">
+
+		<!-- Header -->
+		<header class="w3-container" style="padding-top: 22px">
+			<h5>
+				<b><i class="fa fa-dashboard"></i> My Dashboard</b>
+			</h5>
+		</header>
+
+		<div id="schedule" class="tabcontent">
+			<h3>Weekly Schedule</h3>
+			<p>These are the days you are scheduled to work this week.</p>
+			<table class="w3-table w3-striped w3-white">
+				<tr>
+					<td><p>
+							<b>MON</b>
+						</p></td>
+					<td>8am-7pm</td>
+					<td><i>10 Hours</i></td>
+				</tr>
+				<tr>
+					<td><b>TUE</b></td>
+					<td>8am-5pm</td>
+					<td><i>8 Hours</i></td>
+				</tr>
+				<tr>
+					<td><b>WED</b></td>
+					<td>8am-6pm</td>
+					<td><i>11 Hours</i></td>
+				</tr>
+				<tr>
+					<td><b>THU</b></td>
+					<td>8am-5pm</td>
+					<td><i>8 Hours</i></td>
+				</tr>
+				<tr>
+					<td><b>FRI</b></td>
+					<td>8am-2pm</td>
+					<td><i>5 Hours</i></td>
+				</tr>
+			</table>
+		</div>
+
+
+		<div id="recentreport" class="tabcontent">
+			<h3>Recent Report</h3>
+			<p>This report was generated today</p>
+			<p>
+				<i>"I'm done making a schedule for our new team members"</i><br>
+				<sub>Mary Maxwell</sub>
+			</p>
+
+		</div>
+
+		<div id="punch" class="tabcontent">
+			<h3>Last punched-in</h3>
+			<p>You last punched in Yesterday at 8am.</p>
+			<button class="button button4 w3-blue">Clock-In</button>
+		</div>
+
+
+		<!-- End page content -->
+	</div>
+	<script>
+		// Get the Sidebar
+		var mySidebar = document.getElementById("mySidebar");
+
+		// Get the DIV with overlay effect
+		var overlayBg = document.getElementById("myOverlay");
+
+		// Toggle between showing and hiding the sidebar, and add overlay effect
+		function w3_open() {
+			if (mySidebar.style.display === 'block') {
+				mySidebar.style.display = 'none';
+				overlayBg.style.display = "none";
+			} else {
+				mySidebar.style.display = 'block';
+				overlayBg.style.display = "block";
+			}
+		}
+
+		// Close the sidebar with the close button
+		function w3_close() {
+			mySidebar.style.display = "none";
+			overlayBg.style.display = "none";
+		}
+
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
 </body>
 </html>
 

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.utm.model.TimeSheet;
@@ -18,6 +19,7 @@ import com.utm.service.TimeSheetService;
 import com.utm.service.UserService;
 
 @Controller
+@SessionAttributes("userid")
 public class userController {
 	
 	@Autowired
@@ -67,10 +69,12 @@ public class userController {
 			model.addObject("msg", "User had been registered Successfully");
 			model.addObject("user", user);
 			model.setViewName("user/signup");//I would like to change this but when it redirects the message goes away. 
+			
 		}
 		
 		return model;
 	}
+	
 	
 	@RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
 	public String homeHome () {
@@ -80,7 +84,7 @@ public class userController {
 		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
 		model.addObject("userid", user.getId());
 		model.addObject("timesheet", timesheet);
-		
+		//System.out.println("User service is: "+userService.findUserById((long) 6).getId());
 		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) //convert collection to a stream and look for anymatch 
 				{
 			return "redirect:/home/admin";
@@ -120,6 +124,14 @@ public class userController {
 	public ModelAndView accessDenied () {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("errors/access_denied");
+		return model;
+	}
+	
+	@RequestMapping(value= {"/profile"}, method=RequestMethod.GET)
+	public ModelAndView profile(@ModelAttribute("userid") Long id) {
+		ModelAndView model = new ModelAndView();
+		System.out.println("ID is: "+id);
+		model.setViewName("user/profile");
 		return model;
 	}
 	
