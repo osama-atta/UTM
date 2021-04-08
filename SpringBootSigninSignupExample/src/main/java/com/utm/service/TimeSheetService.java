@@ -1,5 +1,7 @@
 package com.utm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class TimeSheetService {
 	
 	public void DeleteTimeSheet(int employee_id) {
 		timeSheetRepository.deleteByEmployeeid(employee_id);
+	}
+	
+	public List<TimeSheet> GetAllTimeSheets() {
+		return timeSheetRepository.findAll();
 	}
 	
 }
