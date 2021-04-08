@@ -7,7 +7,14 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
 <head>
 <style type="text/css">
 /* Style the tab content */
@@ -28,85 +35,171 @@ input {
 <title>Insert title here</title>
 </head>
 <body>
-<!-- Top container -->
-		<form action="Login" method="post">
-			<input type="hidden" name="command" value="EDIT" />
-			<div id="schedule" class="tabcontent"
-				style="margin-left: 0px; margin-top: 43px;">
-				<h3>Personal info</h3>
+	<!-- Top container -->
+	<div th:switch="${edit}">
+		<span th:case="null">
+			<form th:action="@{/edit}" method="post" action="">
+				<div id="schedule" class="tabcontent"
+					style="margin-left: 0px; margin-top: 43px;">
+					<h3>Personal info</h3>
 
-				<table class="w3-table w3-striped w3-white">
-					<tr>
-						<td><b>First name</b></td>
-						<td><c:out value="${name }"></c:out></td>
-					</tr>
-					<tr>
-						<td><b>Last name</b></td>
-						<td><c:out value="${lname }"></c:out></td>
-					</tr>
-					<tr>
-						<td><b>Email</b></td>
-						<td><c:out value="${email }"></c:out></td>
-					</tr>
-					<tr>
-						<td><b>Employee Id</b></td>
-						<td><c:out value="${em_id }"></c:out></td>
-					</tr>
-					<tr>
-						<td><b>Username</b></td>
-						<td><c:out value="${uname }"></c:out></td>
-					</tr>
-					<tr>
-						<td><b>Password</b></td>
-						<td><c:out value="${pass }"></c:out></td>
-					</tr>
-
-				</table>
-			</div>
-			<input class="w3-bar-item w3-button w3-padding w3-blue" type="submit"
-				value="Edit profile" />
-		</form>
-
-	<c:if th:test="${edit}">
-		<div id="schedule" class="tabcontent"
-			style="margin-left: 0px; margin-top: 43px;">
-			<form action="Login" method="post">
-				<h3>Edit Personal info</h3>
-				<input type="hidden" name="command" value="UPDATE" /> <input
-					type="hidden" name="studentId" value="${em_id}" />
-
-				<table class="w3-table w3-striped w3-white">
-					<tbody>
+					<table class="w3-table w3-striped w3-white">
 						<tr>
-							<td><label><b>First name</b></label></td>
-							<td><input type="text" name="fname" value="${name}" /></td>
+							<td><b>First name</b></td>
+							<td><span th:utext="${user.firstname}"></span></td>
+						</tr>
+						<tr>
+							<td><b>Last name</b></td>
+							<td><span th:utext="${user.lastname}"></span></td>
+						</tr>
+						<tr>
+							<td><b>Email</b></td>
+							<td><span th:utext="${user.email}"></span></td>
+						</tr>
+						<tr>
+							<td><b>Employee Id</b></td>
+							<td><span th:utext="${user.id}"></span></td>
+						</tr>
+						<tr>
+							<td><b>Address</b></td>
+							<td><span th:utext="${user.address}"></span></td>
+						</tr>
+						<tr>
+							<td><b>Status</b></td>
+							<td><span th:utext="${user.active}"></span></td>
 						</tr>
 
-						<tr>
-							<td><label><b>Last name</b></label></td>
-							<td><input type="text" name="lname" value="${lname}" /></td>
-						</tr>
-
-						<tr>
-							<td><label><b>Email</b></label></td>
-							<td><input type="text" name="email" value="${email}" /></td>
-						</tr>
-
-						<tr>
-							<td><label><b>Password</b></label></td>
-							<td><input type="password" name="password" value="${pass}" /></td>
-						</tr>
-					</tbody>
-				</table>
+					</table>
+				</div>
 				<input class="w3-bar-item w3-button w3-padding w3-blue"
-					type="submit" value="Update profile" />
+					type="submit" value="Edit profile" />
 			</form>
-			<form action="Login" method="post">
-				<input type="hidden" name="command" value="!EDIT" /> <input
-					class="w3-bar-item w3-button w3-padding w3-blue" type="submit"
-					value="Cancel Edit" />
-			</form>
-		</div>
-	</c:if>
+		</span> <span th:case="editable">
+			<div class="container">
+				<form class="form-horizontal" role="form" method="POST"
+					th:action="@{/signup}" th:object="${user}">
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<div class="alert alert-success" role="alert" th:if="${msg}"
+								th:utext="${msg}"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<h2>Edit Personal Informatioin</h2>
+							<hr>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 field-label-responsive">
+							<label for="name">First Name</label>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-user"></i>
+									</div>
+									<input type="text" th:field="*{firstname}" class="form-control"
+										id="firstname" placeholder="First Name" required autofocus>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 field-label-responsive">
+							<label for="name">Last Name</label>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-user"></i>
+									</div>
+									<input type="text" th:field="*{lastname}" class="form-control"
+										id="lastname" placeholder="Last name" required autofocus>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 field-label-responsive">
+							<label for="address">Address</label>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-at"></i>
+									</div>
+									<input type="text" th:field="*{address}" class="form-control"
+										id="address" placeholder="Street or Appt, City, State, Zip"
+										required autofocus>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 field-label-responsive">
+							<label for="email">Email</label>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-at"></i>
+									</div>
+									<input type="text" th:field="*{email}" class="form-control"
+										id="email" placeholder="username@utm.com" required autofocus>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-control-feedback">
+								<span class="text-danger align-middle"
+									th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 field-label-responsive">
+							<label for="password">Password</label>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group has-danger">
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-key"></i>
+									</div>
+									<input type="password" th:field="*{password}"
+										class="form-control" id="password" placeholder="Password"
+										required>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-control-feedback">
+								<span class="text-danger align-middle"
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}"> </span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<button type="submit" class="btn btn-success">
+								<i class="fa fa-user-plus"></i> Update Profile
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</span>
+	</div>
+
 </body>
 </html>

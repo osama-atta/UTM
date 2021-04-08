@@ -132,7 +132,19 @@ public class userController {
 		ModelAndView model = new ModelAndView();
 		System.out.println("ID is: "+id);
 		model.setViewName("user/profile");
+		User user = userService.findUserById(id);
+		model.addObject("user", user);
 		return model;
 	}
 	
+	@RequestMapping(value= {"/edit"}, method=RequestMethod.POST)
+	public ModelAndView editprofile(@ModelAttribute("userid") Long id) {
+		System.out.println("Edit called");
+		ModelAndView model = new ModelAndView();
+		model.setViewName("user/profile");
+		User user = userService.findUserById(id);
+		model.addObject("edit", "editable");
+		model.addObject("user", user);
+		return model;
+	}
 }
