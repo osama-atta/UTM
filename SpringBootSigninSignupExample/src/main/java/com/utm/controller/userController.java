@@ -21,130 +21,150 @@ import com.utm.service.UserService;
 @Controller
 @SessionAttributes("userid")
 public class userController {
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private TimeSheet timesheet;
 	@Autowired
 	private TimeSheetService tservice;
-	
-	
-	@RequestMapping(value= {"/"}, method=RequestMethod.GET)
-	public ModelAndView landingPage( ) {
+
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public ModelAndView landingPage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("user/index");
 		return model;
 	}
-	
-	@RequestMapping(value= {"/login"}, method=RequestMethod.GET)
-	public ModelAndView login( ) {
+
+	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("user/login");
 		return model;
 	}
-	
-	@RequestMapping(value= {"/signup"}, method=RequestMethod.GET)
+
+	@RequestMapping(value = { "/signup" }, method = RequestMethod.GET)
 	public ModelAndView signup() {
 		ModelAndView model = new ModelAndView();
 		User user = new User();
 		model.addObject("user", user);
 		model.setViewName("user/signup");
-		
+
 		return model;
 	}
-	
-	@RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
-	public ModelAndView createuser(@Valid User user, BindingResult bindingResult ) {
+
+	@RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
+	public ModelAndView createuser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView model = new ModelAndView();
 		User userExists = userService.findUserByEmail(user.getEmail());
-		
-		if(userExists != null) {
-			bindingResult.rejectValue("email", "error.user", "This email already Exists!"); 
+
+		if (userExists != null) {
+			bindingResult.rejectValue("email", "error.user", "This email already Exists!");
 		}
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			model.setViewName("user/signup");
-		}else {
+		} else {
 			userService.saveUser(user);
 			model.addObject("msg", "User had been registered Successfully");
 			model.addObject("user", user);
-			model.setViewName("user/signup");//I would like to change this but when it redirects the message goes away. 
-			
+			model.setViewName("user/signup");// I would like to change this but when it redirects the message goes away.
+
 		}
-		
+
 		return model;
 	}
-	
-	
-	@RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
-	public String homeHome () {
+
+	@RequestMapping(value = { "/home/home" }, method = RequestMethod.GET)
+	public String homeHome() {
 		ModelAndView model = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
+		model.addObject("userName", user.getFirstname() + " " + user.getLastname());
 		model.addObject("userid", user.getId());
 		model.addObject("timesheet", timesheet);
-		//System.out.println("User service is: "+userService.findUserById((long) 6).getId());
-		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) //convert collection to a stream and look for anymatch 
-				{
+		// System.out.println("User service is: "+userService.findUserById((long)
+		// 6).getId());
+		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) // convert
+																											// collection
+																											// to a
+																											// stream
+																											// and look
+																											// for
+																											// anymatch
+		{
 			return "redirect:/home/admin";
-				}
+		}
 		return "redirect:/home/employee";
-					
-		//model.setViewName("/home/home");
-		//return model;
+
+		// model.setViewName("/home/home");
+		// return model;
 	}
-	
-	@RequestMapping(value= {"/home/admin"}, method=RequestMethod.GET)
-	public ModelAndView homeAdmin () {
+
+	@RequestMapping(value = { "/home/admin" }, method = RequestMethod.GET)
+	public ModelAndView homeAdmin() {
 		ModelAndView model = new ModelAndView();
-		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		
-		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
+
+		model.addObject("userName", user.getFirstname() + " " + user.getLastname());
 		model.addObject("userid", user.getId());
 		model.addObject("timesheet", timesheet);
 		model.setViewName("/home/admin");
 		return model;
 	}
-	@RequestMapping(value= {"/home/employee"}, method=RequestMethod.GET)
-	public ModelAndView homeEmployee () {
+
+	@RequestMapping(value = { "/home/employee" }, method = RequestMethod.GET)
+	public ModelAndView homeEmployee() {
 		ModelAndView model = new ModelAndView();
-		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		
-		model.addObject("userName",user.getFirstname() + " " + user.getLastname());
+
+		model.addObject("userName", user.getFirstname() + " " + user.getLastname());
 		model.addObject("userid", user.getId());
 		model.addObject("timesheet", timesheet);
 		model.setViewName("/home/employee");
 		return model;
 	}
-	
-	@RequestMapping(value= {"/access_denied"}, method=RequestMethod.GET)
-	public ModelAndView accessDenied () {
+
+	@RequestMapping(value = { "/access_denied" }, method = RequestMethod.GET)
+	public ModelAndView accessDenied() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("errors/access_denied");
 		return model;
 	}
-	
-	@RequestMapping(value= {"/profile"}, method=RequestMethod.GET)
-	public ModelAndView profile(@ModelAttribute("userid") Long id) {
+
+	@RequestMapping(value = { "/profile" }, method = RequestMethod.GET)
+	public ModelAndView profile(@ModelAttribute("userid") Integer id) {
 		ModelAndView model = new ModelAndView();
-		System.out.println("ID is: "+id);
+		System.out.println("ID is: " + id);
 		model.setViewName("user/profile");
 		User user = userService.findUserById(id);
 		model.addObject("user", user);
 		return model;
 	}
-	
-	@RequestMapping(value= {"/edit"}, method=RequestMethod.POST)
-	public ModelAndView editprofile(@ModelAttribute("userid") Long id) {
+
+	@RequestMapping(value = { "/edit" }, method = RequestMethod.POST)
+	public ModelAndView editprofile(@ModelAttribute("userid") Integer id) {
 		System.out.println("Edit called");
 		ModelAndView model = new ModelAndView();
 		model.setViewName("user/profile");
 		User user = userService.findUserById(id);
 		model.addObject("edit", "editable");
 		model.addObject("user", user);
+		return model;
+	}
+
+	@RequestMapping(value = { "/updateuserinfo" }, method = RequestMethod.POST)
+	public String updateprofile(@ModelAttribute("user") User user, @ModelAttribute("userid") Integer id) {
+		ModelAndView model = new ModelAndView();
+		userService.updateUserProfile(user, id);
+		return "redirect:/profile";
+	}
+
+	@RequestMapping(value = { "/resetPassword" }, method = RequestMethod.GET)
+	public ModelAndView resetpass(@ModelAttribute("user") User user, Integer id) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("home/resetPassword");
 		return model;
 	}
 }

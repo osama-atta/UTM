@@ -35,12 +35,22 @@ input {
 <title>Insert title here</title>
 </head>
 <body>
+
+<div class="w3-top">
+		<div class="w3-bar w3-light-grey w3-card w3-left-align w3-large">
+			<a
+				class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+				href="javascript:void(0);" onclick="myFunction()"
+				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
+				href="/home/home" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+		</div>
+		
 	<!-- Top container -->
 	<div th:switch="${edit}">
 		<span th:case="null">
 			<form th:action="@{/edit}" method="post" action="">
 				<div id="schedule" class="tabcontent"
-					style="margin-left: 0px; margin-top: 43px;">
+					style="margin-left: 0px; margin-top: 0px;">
 					<h3>Personal info</h3>
 
 					<table class="w3-table w3-striped w3-white">
@@ -77,7 +87,7 @@ input {
 		</span> <span th:case="editable">
 			<div class="container">
 				<form class="form-horizontal" role="form" method="POST"
-					th:action="@{/signup}" th:object="${user}">
+					th:action="@{/updateuserinfo}" th:object="${user}">
 					<div class="row">
 						<div class="col-md-3"></div>
 						<div class="col-md-6">
@@ -174,9 +184,9 @@ input {
 									<div class="input-group-addon" style="width: 2.6rem">
 										<i class="fa fa-key"></i>
 									</div>
-									<input type="password" th:field="*{password}"
-										class="form-control" id="password" placeholder="Password"
-										required>
+									<input type="password" 
+										class="form-control" th:id="password" th:name placeholder="Password"
+										readonly required th:value="${user.password}">
 								</div>
 							</div>
 						</div>
@@ -200,6 +210,6 @@ input {
 			</div>
 		</span>
 	</div>
-
+</div>
 </body>
 </html>
