@@ -17,8 +17,9 @@ public class TimeSheetService {
 		timeSheetRepository.save(ts);
 	}
 	
-	public TimeSheet getTimeSheet(int employee_id) {
-		return timeSheetRepository.findByEmployeeid(employee_id);
+	public List<TimeSheet> getTimeSheets(int employee_id) {
+		
+		return timeSheetRepository.findAllByEmployeeid(employee_id);
 	}
 	
 	public void DeleteTimeSheet(int employee_id) {
@@ -28,5 +29,6 @@ public class TimeSheetService {
 	public List<TimeSheet> getAllTimeSheets() {
 		return timeSheetRepository.findAll();
 	}
+
 	
 }

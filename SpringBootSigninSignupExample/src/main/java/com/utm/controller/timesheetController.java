@@ -27,7 +27,7 @@ public class timesheetController {
 	@Autowired
 	private TimeSheetService timeSheetService;
 	
-	@RequestMapping(value= {"/timesheet"}, method=RequestMethod.GET)
+	//@RequestMapping(value= {"/timesheet"}, method=RequestMethod.GET)
 	public ModelAndView saveTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
 		ModelAndView model = new ModelAndView();
 		timeSheetService.Save(timesheet);
