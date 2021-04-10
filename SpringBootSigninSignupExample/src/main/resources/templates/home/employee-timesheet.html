@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EMPLOYEE TIMESHEET</title>
+</head>
+<body style="margin:20px 100px">
+	<h1>EMPLOYEE TIMESHEET</h1>
+	<div>
+		<h3>Your dashboard | <a href="index.php">home</a></h3>
+		Click + to add the start and end time for the day's hours:
+		<div id="_phpgrid_script_includeonce" style="display:inline">
+<link rel="stylesheet" id="theme-custom-style" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css" />
+<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/js/multiselect/ui.multiselect.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/apps/employee-timesheet/phpGrid/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="/apps/employee-timesheet/phpGrid/css/datagrid.css">
+<script type="text/javascript">
+                    if (typeof jQuery == "undefined"){document.write("<script src='/apps/employee-timesheet/phpGrid/js/jquery-3.3.1.min.js' type='text/javascript'><\/script>");}
+                  </script>
+<script src="/apps/employee-timesheet/phpGrid/js/jquery-ui-1.11.2.min.js" type="text/javascript"></script>
+<script src="/apps/employee-timesheet/phpGrid/js/multiselect/ui.multiselect.min.js" type="text/javascript"></script>
+<script src="/apps/employee-timesheet/phpGrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script src="/apps/employee-timesheet/phpGrid/js/jquery.jqgrid.min.js" type="text/javascript"></script>
+<script src="/apps/employee-timesheet/phpGrid/js/grid.import.fix.js" type="text/javascript"></script>
+<script src="/apps/employee-timesheet/phpGrid/js/jquery-migrate-3.0.1.min.js" type="text/javascript"></script>
+<script src="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery.datetimepicker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery.datetimepicker.css" />
+<script src="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery-ui-timepicker-addon.css" />
+<script src="/apps/employee-timesheet/phpGrid/js/notify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/css/bootstrap.min.css">
+<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/css/bootstrap/pg-jqgrid-bootstrap.css">
+<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/css/font-awesome.min.css">
+</div>
+<style type="text/css">
+#timesheet .ui-priority-secondary{background-image: none;background:#F5FAFF;}
+#timesheet .ui-state-hover{background-image: none;background:#F2FC9C;color:black}
+#timesheet .ui-state-highlight{background-image: none;background:yellow !important;}
+table#timesheet tr{ opacity: 1}
+#_fileLink > img {width:120px;}</style>
+<script type="text/javascript">
+//<![CDATA[
+var lastSel;
+var phpGrid_timesheet;
+jQuery(document).ready(function($){ 
+jGrid_timesheet = jQuery("#timesheet").jqGrid({
+url:"/timeshe/6",
+datatype:"json",
+mtype:"GET",
+colNames:["id","employee_id","date","time_from","time_to","comments","date_submitted"],
+colModel:[{"autoResizable":true,"name":"id","index":"id","hidden":true,"headerTitle":"id","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false,"number":true}},
+	{"autoResizable":true,"name":"employee_id","index":"employee_id","hidden":true,"headerTitle":"employee_id","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false,"number":true}},
+	{"autoResizable":true,"name":"date","index":"date","hidden":false,"headerTitle":"date","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).datepicker({ changeMonth: true, changeYear: true,dateFormat:'yy-mm-dd'},$.datepicker.regional['en']);},"size":"30"},"editrules":{"edithidden":false,"required":false,"date":true}},
+	{"autoResizable":true,"name":"time_from","index":"time_from","hidden":false,"headerTitle":"time_from","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).timepicker({timeInput:true, timeFormat:'hh:mm TT'});},"size":"30"},"editrules":{"edithidden":false,"required":false},"formatter":"date","formatoptions":{"srcformat":"h:i A","newformat":"h:i A"}},
+	{"autoResizable":true,"name":"time_to","index":"time_to","hidden":false,"headerTitle":"time_to","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).timepicker({timeInput:true, timeFormat:'hh:mm TT'});},"size":"30"},"editrules":{"edithidden":false,"required":false},"formatter":"date","formatoptions":{"srcformat":"h:i A","newformat":"h:i A"}},
+	{"autoResizable":true,"name":"comments","index":"comments","hidden":false,"headerTitle":"comments","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false}},
+	{"autoResizable":true,"name":"date_submitted","index":"date_submitted","hidden":false,"headerTitle":"date_submitted","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).datepicker({ changeMonth: true, changeYear: true,dateFormat:'yy-mm-dd'},$.datepicker.regional['en']);},"size":"30"},"editrules":{"edithidden":false,"required":false,"date":true}}],
+pager: "#timesheet_pager1",
+rowNum:10,
+rowList:[10,20,30,50,100,"10000:All"],
+sortname:"1",
+sortorder:"asc",
+viewrecords:true,
+pgtext:"Page {0} of {1}",
+multiselect:false,
+multiPageSelection:true,
+multiselectPosition:"right",
+caption:"timesheet&nbsp;",
+altRows:true,
+scrollOffset:0,
+rownumbers:false,
+shrinkToFit:true,
+autowidth:true,
+hiddengrid:false,
+scroll:false,
+height:"auto",
+autoresizeOnLoad:false,
+iconSet:"fontAwesome",
+guiStyle:"bootstrap",
+autoencode:true,
+singleSelectClickMode:"selectonly",
+widthOrg:"auto",
+width:"auto",
+sortable:true,
+loadError:
+                    function(xhr,status, err) {
+                        try{
+                            jQuery.jgrid.info_dialog(
+                                jQuery.jgrid.errors.errcap,
+                                "<div style=\"font-size:10px;text-align:left;width:300px;;height:150px;overflow:auto;color:red;\">"+ xhr.responseText +"</div>",
+                                jQuery.jgrid.edit.bClose,{buttonalign:"center"});
+                        }
+                        catch(e) { alert(xhr.responseText)};
+                    },
+gridview:true,
+editurl:"/apps/employee-timesheet/jGrid/edit.php?dt=json&gn=timesheet",
+ondblClickRow: function(){
+                            var row_id = $(this).getGridParam("selrow");
+$(this).jqGrid("editGridRow", row_id, {           // --------- edit options ---------
+afterShowForm:function(form_id){
+}, // afterShowForm 
+onInitializeForm:function(form_id){},
+afterSubmit:function(d,a){return true;},
+jqModal:true,
+                         checkOnUpdate:false,
+                         savekey: [true,13],
+                         width:450,
+                                    height:"100%",
+                                    navkeys: [false,38,40],
+                                    checkOnSubmit : false,
+                                    reloadAfterSubmit:false,
+                                    resize:true,
+                                    closeOnEscape:true,
+                                    closeAfterEdit:true,bottominfo:"* required",
+                                    viewPagerButtons:true,
+beforeShowForm: function(frm) { }
+            }); // editGridRow
+        }, // ondblClickRow
+
+loadtext:"Loading jGrid ..."
+});
+jQuery("#timesheet").jqGrid("navGrid", "#timesheet_pager1",
+{edit:true,add:true,del:true,view:true,cloneToTop:true,search:false,excel:false}, {            // --------- edit options ---------
+afterShowForm:function(form_id){
+}, // afterShowForm 
+onInitializeForm:function(form_id){},
+afterSubmit:function(d,a){return true;},
+jqModal:true,
+                         checkOnUpdate:false,
+                         savekey: [true,13],
+                         width:450,
+                                    height:"100%",
+                                    navkeys: [false,38,40],
+                                    checkOnSubmit : false,
+                                    reloadAfterSubmit:false,
+                                    resize:true,
+                                    closeOnEscape:true,
+                                    closeAfterEdit:true,bottominfo:"* required",
+                                    viewPagerButtons:true,
+beforeShowForm: function(frm) { }
+},
+{            // --------- add options ---------
+                                closeAfterAdd:true,
+                                bottominfo:"* required",
+                                viewPagerButtons:true,
+                                afterComplete: function (response, postdata, formid) {  // auto reload
+                                            var $self = $(this);
+                                            setTimeout(function () {
+                                                $self.trigger("reloadGrid");
+                                            }, 50);
+                                         },
+                                beforeShowForm: function(frm) {$(this).resetSelection();},
+afterShowForm:function(form_id){
+}, // afterShowForm 
+onInitializeForm:function(form_id){},
+afterSubmit:function(d,a){return true;},
+jqModal:true,
+                         checkOnUpdate:false,
+                         savekey: [true,13],
+                         width:450,
+                                    height:"100%",
+                                    navkeys: [false,38,40],
+                                    checkOnSubmit : false,
+                                    reloadAfterSubmit:false,
+                                    resize:true,
+                                    closeOnEscape:true,
+                                    closeAfterEdit:true,bottominfo:"* required",
+                                    viewPagerButtons:true,
+afterShowForm:function(form_id){
+}, // afterShowForm 
+onInitializeForm:function(form_id){},
+afterSubmit:function(d,a){return true;},
+jqModal:true,
+                         checkOnUpdate:false,
+                         savekey: [true,13],
+                         width:450,
+                                    height:"100%",
+                                    navkeys: [false,38,40],
+                                    checkOnSubmit : false,
+                                    reloadAfterSubmit:false,
+                                    resize:true,
+                                    closeOnEscape:true,
+                                    closeAfterEdit:true,bottominfo:"* required",
+                                    viewPagerButtons:true,
+beforeShowForm: function(frm) { }
+},
+{   // --------- del options ---------
+                                reloadAfterSubmit:false,
+                                jqModal:false,
+                                bottominfo:"* required",
+                                closeOnEscape:true
+                            },
+                            {
+                                // --------- view options ---------
+                                navkeys: [false,38,40],
+                                height:250,
+                                jqModal:false,
+                                resize:true,
+                                closeOnEscape:true
+                            },
+                            {closeOnEscape:true} // search options
+                         );
+
+});
+function getSelRows()
+             {
+                var rows = jQuery("#timesheet").jqGrid("getGridParam","selarrrow");
+                return rows;
+             }
+// cellValue - the original value of the cell
+              // options - as set of options, e.g
+              // options.rowId - the primary key of the row
+              // options.colModel - colModel of the column
+              // rowObject - array of cell data for the row, so you can access other cells in the row if needed 
+function imageFormatter_timesheet(cellValue, options, rowObject)
+             {
+                return (cellValue == "" || cellValue === null)? "":"<img src=\""+ cellValue + "\" originalValue=\""+ cellValue +"\" title=\""+ cellValue +"\">";
+             }
+// cellValue - the original value of the cell
+              // options - as set of options, e.g
+              // options.rowId - the primary key of the row
+              // options.colModel - colModel of the column
+              // cellObject - the HMTL of the cell (td) holding the actual value 
+function imageUnformatter_timesheet(cellValue, options, cellObject)
+             {
+                return $(cellObject.html()).attr("originalValue");
+             }
+function booleanFormatter(cellValue, options, rowObject)
+             {
+                var op;
+                op = $.extend({},options.colModel.formatoptions);
+                myCars=new Array();
+                //alert(op.No);
+                //mycars[cellValue]=  op.boolean.No;
+                //mycars[cellValue]=  op.boolean.Yes;
+                myCars[op.No]="No";
+                myCars[op.Yes]="Yes";
+                //alert(options[boolean]);
+                return myCars[cellValue];
+             }
+function booleanUnformatter(cellValue, options, cellObject)
+             {    var op;
+                  op = $.extend({},options.colModel.formatoptions);
+                  //alert(op.No);
+                  if(cellValue=="No")
+                  return (op.No);
+                  else
+                  return (op.Yes);
+            //alert(op.boolean.Yes)
+            //return (op.boolean.cellValue);
+              //  myCars=new Array();
+            //    myCars["No"]='0';
+            //    myCars["Yes"]=1;
+                //alert(myCars[cellValue]);
+                //alert(options.colModel.formatoptions[1]);
+                //return myCars[cellValue];
+             }
+//]]>
+</script>
+<table id="timesheet"></table>
+<div id="timesheet_pager1"></div>
+<br />
+<script type="text/javascript">
+jQuery(document).ready(function($){ 
+jQuery(document).ready(function($){ 
+                    $(window).bind("resize", function() {
+                                        jGrid_timesheet.setGridWidth($("body").width());
+                                    }).trigger("resize");
+                });
+jQuery( document ).ajaxComplete(function( event, xhr, settings ) {
+                        if ( settings.url.split("?")[0] === "/apps/employee-timesheet/jGrid/edit.php"){
+                            if( xhr.responseText.indexOf("jGrid_ERROR")>=0){
+                                jQuery.notify( xhr.responseText, "error" );
+                            }else{
+                                jQuery.notify( "Saved successfully!", "success" );
+                            }
+                        }
+                    });
+});
+</script>
+
+</body>
+</html>
