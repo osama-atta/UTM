@@ -27,11 +27,11 @@ public class timesheetController {
 	@Autowired
 	private TimeSheetService timeSheetService;
 	
-	//@RequestMapping(value= {"/timesheet"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/home/emptimesheet"}, method=RequestMethod.GET)
 	public ModelAndView saveTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
 		ModelAndView model = new ModelAndView();
 		timeSheetService.Save(timesheet);
-		model.setViewName("/home/home");
+		model.setViewName("/home/emptimesheet");
 		return model;
 	}
 	

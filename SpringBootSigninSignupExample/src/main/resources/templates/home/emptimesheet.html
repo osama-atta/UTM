@@ -8,28 +8,29 @@
 	<div>
 		<h3>Your dashboard | <a href="index.php">home</a></h3>
 		Click + to add the start and end time for the day's hours:
-		<div id="_phpgrid_script_includeonce" style="display:inline">
+		<div id="_timeSheetGrid_script_includeonce" style="display:inline">
 <link rel="stylesheet" id="theme-custom-style" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css" />
-<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/js/multiselect/ui.multiselect.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="/apps/employee-timesheet/phpGrid/css/ui.jqgrid.css" />
-<link rel="stylesheet" type="text/css" href="/apps/employee-timesheet/phpGrid/css/datagrid.css">
+<link rel="stylesheet" href="/static/css/ui.multiselect.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/static/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/datagrid.css">
 <script type="text/javascript">
-                    if (typeof jQuery == "undefined"){document.write("<script src='/apps/employee-timesheet/phpGrid/js/jquery-3.3.1.min.js' type='text/javascript'><\/script>");}
+                    if (typeof jQuery == "undefined"){document.write("<script src='https://code.jquery.com/jquery-3.6.0.min.js' type='text/javascript'><\/script>");}
                   </script>
-<script src="/apps/employee-timesheet/phpGrid/js/jquery-ui-1.11.2.min.js" type="text/javascript"></script>
-<script src="/apps/employee-timesheet/phpGrid/js/multiselect/ui.multiselect.min.js" type="text/javascript"></script>
-<script src="/apps/employee-timesheet/phpGrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-<script src="/apps/employee-timesheet/phpGrid/js/jquery.jqgrid.min.js" type="text/javascript"></script>
-<script src="/apps/employee-timesheet/phpGrid/js/grid.import.fix.js" type="text/javascript"></script>
-<script src="/apps/employee-timesheet/phpGrid/js/jquery-migrate-3.0.1.min.js" type="text/javascript"></script>
-<script src="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery.datetimepicker.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery.datetimepicker.css" />
-<script src="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="/apps/employee-timesheet/phpGrid/js/datetimepicker/jquery-ui-timepicker-addon.css" />
-<script src="/apps/employee-timesheet/phpGrid/js/notify.min.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/css/bootstrap.min.css">
-<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/css/bootstrap/pg-jqgrid-bootstrap.css">
-<link rel="stylesheet" href="/apps/employee-timesheet/phpGrid/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multiselect-widget/3.0.0/jquery.multiselect.min.js" type="text/javascript"></script>
+<!--  may not be right multiselect --> 
+<script src="/static/js/grid.locale-en.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/5.5.4/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="/static/js/grid.import.fix.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/css/jquery-ui-timepicker-addon.css" />
+<script src="/static/js/notify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/pg-jqgrid-bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </div>
 <style type="text/css">
 #timesheet .ui-priority-secondary{background-image: none;background:#F5FAFF;}
@@ -40,20 +41,21 @@ table#timesheet tr{ opacity: 1}
 <script type="text/javascript">
 //<![CDATA[
 var lastSel;
-var phpGrid_timesheet;
+var timeSheetGrid_timesheet;
 jQuery(document).ready(function($){ 
 jGrid_timesheet = jQuery("#timesheet").jqGrid({
-url:"/timeshe/6",
+url:"/timesheet/6",
 datatype:"json",
 mtype:"GET",
-colNames:["id","employee_id","date","time_from","time_to","comments","date_submitted"],
+colNames:["id","employeeid","date","comments","datesubmitted","starttime","endtime"],
 colModel:[{"autoResizable":true,"name":"id","index":"id","hidden":true,"headerTitle":"id","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false,"number":true}},
-	{"autoResizable":true,"name":"employee_id","index":"employee_id","hidden":true,"headerTitle":"employee_id","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false,"number":true}},
+	{"autoResizable":true,"name":"employeeid","index":"employeeid","hidden":true,"headerTitle":"employeeid","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false,"number":true}},
 	{"autoResizable":true,"name":"date","index":"date","hidden":false,"headerTitle":"date","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).datepicker({ changeMonth: true, changeYear: true,dateFormat:'yy-mm-dd'},$.datepicker.regional['en']);},"size":"30"},"editrules":{"edithidden":false,"required":false,"date":true}},
-	{"autoResizable":true,"name":"time_from","index":"time_from","hidden":false,"headerTitle":"time_from","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).timepicker({timeInput:true, timeFormat:'hh:mm TT'});},"size":"30"},"editrules":{"edithidden":false,"required":false},"formatter":"date","formatoptions":{"srcformat":"h:i A","newformat":"h:i A"}},
-	{"autoResizable":true,"name":"time_to","index":"time_to","hidden":false,"headerTitle":"time_to","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).timepicker({timeInput:true, timeFormat:'hh:mm TT'});},"size":"30"},"editrules":{"edithidden":false,"required":false},"formatter":"date","formatoptions":{"srcformat":"h:i A","newformat":"h:i A"}},
 	{"autoResizable":true,"name":"comments","index":"comments","hidden":false,"headerTitle":"comments","edittype":"text","editable":true,"editoptions":{"size":"30"},"editrules":{"edithidden":false,"required":false}},
-	{"autoResizable":true,"name":"date_submitted","index":"date_submitted","hidden":false,"headerTitle":"date_submitted","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).datepicker({ changeMonth: true, changeYear: true,dateFormat:'yy-mm-dd'},$.datepicker.regional['en']);},"size":"30"},"editrules":{"edithidden":false,"required":false,"date":true}}],
+	{"autoResizable":true,"name":"datesubmitted","index":"datesubmitted","hidden":false,"headerTitle":"datesubmitted","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).datepicker({ changeMonth: true, changeYear: true,dateFormat:'yy-mm-dd'},$.datepicker.regional['en']);},"size":"30"},"editrules":{"edithidden":false,"required":false,"date":true}},
+	{"autoResizable":true,"name":"starttime","index":"starttime","hidden":false,"headerTitle":"starttime","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).timepicker({timeInput:true, timeFormat:'hh:mm TT'});},"size":"30"},"editrules":{"edithidden":false,"required":false},"formatter":"date","formatoptions":{"srcformat":"h:i A","newformat":"h:i A"}},
+	{"autoResizable":true,"name":"endtime","index":"endtime","hidden":false,"headerTitle":"endtime","edittype":"text","editable":true,"editoptions":{"dataInit":function(el){$(el).timepicker({timeInput:true, timeFormat:'hh:mm TT'});},"size":"30"},"editrules":{"edithidden":false,"required":false},"formatter":"date","formatoptions":{"srcformat":"h:i A","newformat":"h:i A"}},
+	],
 pager: "#timesheet_pager1",
 rowNum:10,
 rowList:[10,20,30,50,100,"10000:All"],
