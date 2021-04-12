@@ -12,4 +12,6 @@ public interface UserService {
 
 	public User updateUserProfile(User user, Integer id);
 	
+	public User updateUserPassword(Integer id, String password);
+	
 }

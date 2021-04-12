@@ -167,4 +167,14 @@ public class userController {
 		model.setViewName("home/resetPassword");
 		return model;
 	}
+	
+	@RequestMapping(value = { "/resetP" }, method = RequestMethod.POST)
+	public String updatePassword(@ModelAttribute("userid") Integer id,@ModelAttribute("pass2") String password) {
+		ModelAndView model = new ModelAndView();
+		System.out.println("you are here" + password);
+		System.out.println("you are here" + id);
+		userService.updateUserPassword(id,password);
+		return "redirect:/profile";
+	}
+	
 }

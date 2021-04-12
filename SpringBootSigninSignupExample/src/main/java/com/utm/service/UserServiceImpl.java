@@ -54,6 +54,14 @@ public class UserServiceImpl implements UserService {
 		dbUser.setAddress(user.getAddress());
 		return userRepository.save(dbUser);
 	}
+	
+	@Override
+	public User updateUserPassword(Integer id, String password)
+	{
+		User dbUser = findUserById(id);
+		dbUser.setPassword(password);
+		return dbUser; 
+	}
 
 	
 
