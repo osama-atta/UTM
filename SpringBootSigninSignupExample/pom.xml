@@ -13,7 +13,7 @@
 	<version>0.0.3</version>
 	<name>SpringBootSigninSignup</name>
 	<description>User Time Management System</description>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>1.8</java.version>
 		<bootstrap.version>4.2.1</bootstrap.version>
