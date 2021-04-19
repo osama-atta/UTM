@@ -55,7 +55,7 @@ html, body, h1, h2, h3, h4, h5 { font-family: "Open Sans", sans-serif }
 			<a href="#" class="w3-bar-item w3-button w3-padding"><img src="/UTM/img/time.ico" style="width: 16px" alt="" />&nbsp;Hours Worked</a>
 			<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell" aria-hidden="true"></i>&nbsp;Notifications</a> 
 			<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print Pay Stub</a> 
-			<a th:href="@{/resetPassword}" class="w3-bar-item w3-button w3-padding"><img src="/UTM/img/key.ico" style="width: 16px" alt="" />&nbsp;Reset Password</a> 
+			<a  class="w3-bar-item w3-button" onclick="openForm2()"><img src="/UTM/img/key.ico" style="width: 16px" alt="" />&nbsp;Reset Password</a> 
 			<a th:href="@{/logout}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sign-out"></i>&nbsp;Sign Out </a>
 			
     <div class="reportPopup">
@@ -68,6 +68,24 @@ html, body, h1, h2, h3, h4, h5 { font-family: "Open Sans", sans-serif }
           <textarea th:id="report" th:name="report" placeholder="Write something.." style="height:100px" required></textarea>
           <button type="submit" class="btn">Send Report</button>
           <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="reportPopup">
+      <div class="formPopup" id="popupForm2">
+        <form th:action="@{/resetP}" method="post" class="formContainer">
+          <h2>Reset Password</h2>
+          <label for="pass1">
+            <strong>New Password</strong>
+          </label>
+          <input type="password" th:id="pass1" placeholder="New Password" name="pass1" required>
+          <label for="pass2">
+            <strong>Re-Type Password</strong>
+          </label>
+          <input type="password" id="pass2" placeholder="Re-Type Password" name="pass2" required>
+          <button type="submit" class="btn">Update Password</button>
+          <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
         </form>
       </div>
     </div>
@@ -189,7 +207,13 @@ html, body, h1, h2, h3, h4, h5 { font-family: "Open Sans", sans-serif }
 	      function closeForm() {
 	        document.getElementById("popupForm").style.display = "none";
 	      }
-
+	      
+	      function openForm2() {
+		        document.getElementById("popupForm2").style.display = "block";
+		      }
+		      function closeForm2() {
+		        document.getElementById("popupForm2").style.display = "none";
+		      }
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 	</script>

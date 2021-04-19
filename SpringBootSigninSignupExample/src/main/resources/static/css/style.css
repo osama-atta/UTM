@@ -127,4 +127,18 @@ body {
   margin-bottom: 16px;
   resize: vertical;
       }
+      
+       .formContainer input[type=text],
+      .formContainer input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 20px 0;
+        border: none;
+        background: #eee;
+      }
+      .formContainer input[type=text]:focus,
+      .formContainer input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
       /*end of pop up form report*/
