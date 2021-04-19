@@ -1,5 +1,7 @@
 package com.utm.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +15,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.utm.model.ShiftReport;
 import com.utm.model.TimeSheet;
 import com.utm.model.User;
+import com.utm.service.ShiftReportService;
 import com.utm.service.TimeSheetService;
 import com.utm.service.UserService;
 
 @Controller
 @SessionAttributes("userid")
 public class userController {
-
+	
+	@Autowired
+	private ShiftReport reportObj;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ShiftReportService reportService;
 	@Autowired
 	private TimeSheet timesheet;
 	@Autowired
@@ -167,14 +175,27 @@ public class userController {
 		model.setViewName("home/resetPassword");
 		return model;
 	}
-	
+
 	@RequestMapping(value = { "/resetP" }, method = RequestMethod.POST)
-	public String updatePassword(@ModelAttribute("userid") Integer id,@ModelAttribute("pass2") String password) {
+	public String updatePassword(@ModelAttribute("userid") Integer id, @ModelAttribute("pass2") String password) {
 		ModelAndView model = new ModelAndView();
 		System.out.println("you are here" + password);
 		System.out.println("you are here" + id);
-		userService.updateUserPassword(id,password);
+		userService.updateUserPassword(id, password);
 		return "redirect:/profile";
 	}
-	
+
+	@RequestMapping(value = { "/report" }, method = RequestMethod.POST)
+	public String shiftReport(@ModelAttribute("userid") Integer id, @ModelAttribute("report") String report) {
+		System.out.println("User id in report is: " + id);
+		System.out.println("Report is: " + report);
+		reportService.Save(report, id, reportObj);
+		List<ShiftReport> s = reportService.getReports();
+		for (ShiftReport s1 : s) 
+		{
+			System.out.println("Report from db:"+s1.toString());
+		}
+		return "redirect:/home/employee";
+	}
+
 }

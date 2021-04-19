@@ -50,12 +50,27 @@ html, body, h1, h2, h3, h4, h5 { font-family: "Open Sans", sans-serif }
 			<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a> 
 			<a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>&nbsp;Overview</a> 
 			<a href="schedule" class="w3-bar-item w3-button w3-padding"><img src="/UTM/img/calendar.ico" style="width: 16px" alt="" />&nbsp;View Schedule </a> 
-			<a href="report" class="w3-bar-item w3-button"> 	<img src="/UTM/img/report.ico" style="width: 16px" alt="" />&nbsp;Make a report</a>
+			<a  class="w3-bar-item w3-button" onclick="openForm()"> 	<img src="/UTM/img/report.ico" style="width: 16px" alt="" />&nbsp;Make a report</a>
 			<a href="#" class="w3-bar-item w3-button w3-padding"><img src="/UTM/img/request.ico" style="width: 16px" alt="" />&nbsp;Requests </a> 
 			<a href="#" class="w3-bar-item w3-button w3-padding"><img src="/UTM/img/time.ico" style="width: 16px" alt="" />&nbsp;Hours Worked</a>
 			<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell" aria-hidden="true"></i>&nbsp;Notifications</a> 
+			<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print Pay Stub</a> 
 			<a th:href="@{/resetPassword}" class="w3-bar-item w3-button w3-padding"><img src="/UTM/img/key.ico" style="width: 16px" alt="" />&nbsp;Reset Password</a> 
 			<a th:href="@{/logout}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sign-out"></i>&nbsp;Sign Out </a>
+			
+    <div class="reportPopup">
+      <div class="formPopup" id="popupForm">
+        <form th:action="@{/report}" method="post" class="formContainer">
+          <h2>Shift Report</h2>
+          <label for="report">
+            <strong>Report</strong>
+          </label>
+          <textarea th:id="report" th:name="report" placeholder="Write something.." style="height:100px" required></textarea>
+          <button type="submit" class="btn">Send Report</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+    </div>
 		</div>
 	</nav>
 
@@ -167,6 +182,13 @@ html, body, h1, h2, h3, h4, h5 { font-family: "Open Sans", sans-serif }
 			document.getElementById(cityName).style.display = "block";
 			evt.currentTarget.className += " active";
 		}
+		
+		function openForm() {
+	        document.getElementById("popupForm").style.display = "block";
+	      }
+	      function closeForm() {
+	        document.getElementById("popupForm").style.display = "none";
+	      }
 
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();

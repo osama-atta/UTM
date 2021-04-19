@@ -1,5 +1,4 @@
 @charset "ISO-8859-1";
-<style>
 * {
 	box-sizing: border-box
 }
@@ -66,4 +65,66 @@ body {
 .button4 {
 	border-radius: 12px;
 }
-</style>
+
+/* pop up form report css*/
+* {
+        box-sizing: border-box;
+      }
+      .openBtn {
+        display: flex;
+        justify-content: left;
+      }
+      .openButton {
+        border: none;
+        border-radius: 5px;
+        background-color: #1c87c9;
+        color: white;
+        padding: 14px 20px;
+        cursor: pointer;
+        position: fixed;
+      }
+      
+      .formPopup {
+        display: none;
+        position: fixed;
+        left: 45%;
+        top: 5%;
+        transform: translate(-50%, 5%);
+        border: 3px solid #999999;
+        z-index: 9;
+      }
+      .formContainer {
+        max-width: 300px;
+        padding: 40px;
+        background-color: #fff;
+      }
+      
+      .formContainer .btn {
+        padding: 12px 20px;
+        border: none;
+        background-color: #8ebf42;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 15px;
+        opacity: 0.8;
+      }
+      .formContainer .cancel {
+        background-color: #cc0000;
+      }
+      .formContainer .btn:hover,
+      .openButton:hover {
+        opacity: 1;
+      }
+      
+      input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+      }
+      /*end of pop up form report*/
