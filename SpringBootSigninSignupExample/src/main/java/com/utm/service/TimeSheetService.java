@@ -8,7 +8,7 @@ import com.utm.repository.TimeSheetRepository;
 
 public interface TimeSheetService {
 		
-	public void Save(TimeSheet timesheet);
+	TimeSheet save(TimeSheet timesheet);
 	
 	public List<TimeSheet> getTimeSheets(int employee_id);
 	

@@ -42,10 +42,10 @@ public class timeSheetRestController {
 	}
 	
 	
-	@Operation(summary = "create new timesheet by employee id")
+	@Operation(summary = "create new timesheet")
 	@PostMapping("/timesheet/add")
-	public TimeSheet createTimeSheetbyEmployeeID(@RequestBody TimeSheet newTimeSheet) {
-		return timesheetService.addTimeSheet(newTimeSheet);
+	public TimeSheet createTimeSheetbyEmployeeID(@RequestBody TimeSheet timeSheet) {
+		return timesheetService.save(timeSheet);
 	}
 	
 }

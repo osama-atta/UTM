@@ -14,8 +14,8 @@ public class TimeSheetServiceImpl implements TimeSheetService {
 	@Autowired
 	private TimeSheetRepository timeSheetRepository;
 	
-	public void Save(TimeSheet timesheet) {
-		timeSheetRepository.save(timesheet);
+	public TimeSheet save(TimeSheet timesheet) {
+		return timeSheetRepository.save(timesheet);
 	}
 	
 	@Override
