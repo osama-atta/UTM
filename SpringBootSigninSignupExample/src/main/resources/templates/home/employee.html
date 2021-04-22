@@ -27,7 +27,8 @@ html, body, h1, h2, h3, h4, h5 {
 			onclick="w3_open();">
 			<i class="fa fa-bars"></i> Menu
 		</button>
-		<span class="w3-bar-item w3-right">GROUP77</span>
+		<a th:href="@{/}" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+			class="fa fa-home w3-margin-right"></i>GROUP77</a>
 	</div>
 
 	<!-- Sidebar/menu -->
@@ -168,8 +169,8 @@ html, body, h1, h2, h3, h4, h5 {
 
 			<option th:each="report : ${reports}">
 				<p>
-					<i th:text="${report.report}"></i> 
-					<sub> <i th:text="${report.firstAndLastName}"></i></sub>
+					<i th:text="${report.report}"></i> <sub> <i
+						th:text="${report.firstAndLastName}"></i></sub>
 				</p>
 			</option>
 
