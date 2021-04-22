@@ -1,5 +1,7 @@
 package com.utm.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -92,12 +94,7 @@ public class userController {
 		model.addObject("timesheet", timesheet);
 		// System.out.println("User service is: "+userService.findUserById((long)
 		// 6).getId());
-		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) // convert
-																											// collection
-																											// to a
-																											// stream
-																											// and look
-																											// for
+		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) // convert																				// for
 																											// anymatch
 		{
 			return "redirect:/home/admin";
@@ -126,9 +123,11 @@ public class userController {
 		ModelAndView model = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-
+		List<ShiftReport> report = reportService.getReports();
+		List<ShiftReport> recentReport = sortedReport(report);
 		model.addObject("userName", user.getFirstname() + " " + user.getLastname());
 		model.addObject("userid", user.getId());
+		model.addObject("reports", recentReport);
 		model.addObject("timesheet", timesheet);
 		model.setViewName("/home/employee");
 		return model;
@@ -186,16 +185,22 @@ public class userController {
 	}
 
 	@RequestMapping(value = { "/report" }, method = RequestMethod.POST)
-	public String shiftReport(@ModelAttribute("userid") Integer id, @ModelAttribute("report") String report) {
+	public String shiftReport(@ModelAttribute("userid") Integer id,
+			@ModelAttribute("report") String report, 
+			@ModelAttribute("firstAndLastName") String firstAndLastName) {
 		System.out.println("User id in report is: " + id);
 		System.out.println("Report is: " + report);
-		reportService.Save(report, id, reportObj);
-		List<ShiftReport> s = reportService.getReports();
-		for (ShiftReport s1 : s) 
-		{
-			System.out.println("Report from db:"+s1.toString());
-		}
+		reportService.Save(report, id, firstAndLastName, reportObj);
 		return "redirect:/home/employee";
 	}
-
+	
+	private List<ShiftReport> sortedReport(List<ShiftReport> reportList) {
+		Collections.reverse(reportList);
+		List<ShiftReport> returnedReport = new ArrayList<ShiftReport>();
+		for(int i = 0; i < 4; i++) {
+			returnedReport.add(reportList.get(i));
+			//Integer userid = returnedReport.get(i).getUserid();			
+		}
+		return returnedReport;	
+	}
 }

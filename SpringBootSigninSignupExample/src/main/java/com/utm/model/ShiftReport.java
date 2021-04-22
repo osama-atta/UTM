@@ -23,6 +23,9 @@ public class ShiftReport {
 	
 	@Column(name = "report")
 	private String report;
+	
+	@Column(name = "signature")
+	private String firstAndLastName;
 
 	public Integer getId() {
 		return id;
@@ -46,6 +49,14 @@ public class ShiftReport {
 
 	public void setReport(String report) {
 		this.report = report;
+	}
+
+	public String getFirstAndLastName() {
+		return firstAndLastName;
+	}
+
+	public void setFirstAndLastName(String firstAndLastName) {
+		this.firstAndLastName = firstAndLastName;
 	}
 
 	@Override

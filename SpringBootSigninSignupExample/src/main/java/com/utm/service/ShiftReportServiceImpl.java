@@ -14,19 +14,20 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	@Autowired
 	ShiftReportRepository repo;
 	
-//	@Autowired
-//	private ShiftReport reportObj;
-	@Override
-	public void Save(String report, Integer id, ShiftReport reportObj) {
-		reportObj.setReport(report);
-		reportObj.setUserid(id);
-		repo.save(reportObj);
-		System.out.println("Services executed......");
-	}
+	
 
 	@Override
 	public List<ShiftReport> getReports() {
 		return (List<ShiftReport>) repo.findAll();
+	}
+
+	@Override
+	public void Save(String report, Integer id, String firstAndLastName, ShiftReport reportObj) {
+		reportObj.setReport(report);
+		reportObj.setUserid(id);
+		reportObj.setFirstAndLastName(firstAndLastName);
+		repo.save(reportObj);
+		
 	}
 
 }
