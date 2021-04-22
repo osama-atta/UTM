@@ -11,7 +11,7 @@
 	<groupId>com.utm</groupId>
 	<artifactId>UTM</artifactId>
 	<version>0.0.3</version>
-	<name>SpringBootSigninSignup</name>
+	<name>UTM</name>
 	<description>User Time Management System</description>
 	<packaging>jar</packaging>
 	<properties>

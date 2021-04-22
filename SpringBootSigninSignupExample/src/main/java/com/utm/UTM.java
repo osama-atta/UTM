@@ -7,11 +7,11 @@ import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
 
 @EnableEncryptableProperties
 @SpringBootApplication
-public class SpringBootSigninSignupExampleApplication {
+public class UTM {
 
 	public static void main(String[] args) {
 		System.setProperty("server.servlet.context-path", "/UTM");
-		SpringApplication.run(SpringBootSigninSignupExampleApplication.class, args);
+		SpringApplication.run(UTM.class, args);
 	}
 
 }
