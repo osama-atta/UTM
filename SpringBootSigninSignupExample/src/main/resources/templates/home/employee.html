@@ -1,51 +1,81 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-<link rel="stylesheet"
-	href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	rel="stylesheet"
+	href="https://www.w3schools.com/w3css/4/w3.css"
+>
+<link
+	rel="stylesheet"
+	href="https://www.w3schools.com/lib/w3-theme-blue-grey.css"
+>
+<link
+	rel="stylesheet"
+	href='https://fonts.googleapis.com/css?family=Open+Sans'
+>
+<link
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+>
 <style type="text/css">
 html, body, h1, h2, h3, h4, h5 {
-	font-family: "Open Sans", sans-serif
+				font-family: "Open Sans", sans-serif
 }
 </style>
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 
-<link rel="stylesheet" href="/UTM/css/style.css">
+<link
+	rel="stylesheet"
+	href="/UTM/css/style.css"
+>
 
 </head>
 <body class="w3-theme-l5">
 	<!-- Top container -->
-	<div class="w3-bar w3-top w3-black w3-large" style="z-index: 4">
+	<div
+		class="w3-bar w3-top w3-black w3-large"
+		style="z-index: 4"
+	>
 		<button
 			class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey"
-			onclick="w3_open();">
+			onclick="w3_open();"
+		>
 			<i class="fa fa-bars"></i> Menu
 		</button>
-		<a th:href="@{/}" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
-			class="fa fa-home w3-margin-right"></i>GROUP77</a>
+		<a
+			th:href="@{/}"
+			class="w3-bar-item w3-button w3-padding-large w3-theme-d4"
+		><i class="fa fa-home w3-margin-right"></i>GROUP77</a>
 	</div>
 
 	<!-- Sidebar/menu -->
-	<nav class="w3-sidebar w3-collapse w3-white w3-animate-left"
-		style="z-index: 3; width: 300px;" id="mySidebar">
+	<nav
+		class="w3-sidebar w3-collapse w3-white w3-animate-left"
+		style="z-index: 3; width: 300px;"
+		id="mySidebar"
+	>
 		<br>
 		<div class="w3-container w3-row">
 			<div class="w3-col s4">
-				<img src="/UTM/img/userico.ico" class="w3-circle w3-margin-right"
-					style="width: 46px" alt="">
+				<img
+					src="/UTM/img/userico.ico"
+					class="w3-circle w3-margin-right"
+					style="width: 46px"
+					alt=""
+				>
 			</div>
 			<div class="w3-col s8 w3-bar">
-				<span>Welcome, <strong><span th:utext="${userName}"></span></strong></span><br>
-				<a href="#" class="w3-bar-item w3-button"><i
-					class="fa fa-envelope"></i></a> <a th:href="@{/profile}"
-					class="w3-bar-item w3-button"><i class="fa fa-user"></i></a> <a
-					href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+				<span>Welcome, <strong><span th:utext="${userName}"></span></strong></span><br> <a
+					href="#"
+					class="w3-bar-item w3-button"
+				><i class="fa fa-envelope"></i></a> <a
+					th:href="@{/profile}"
+					class="w3-bar-item w3-button"
+				><i class="fa fa-user"></i></a> <a
+					href="#"
+					class="w3-bar-item w3-button"
+				><i class="fa fa-cog"></i></a>
 			</div>
 		</div>
 		<hr>
@@ -53,59 +83,145 @@ html, body, h1, h2, h3, h4, h5 {
 			<h5>Dashboard</h5>
 		</div>
 		<div class="w3-bar-block">
-			<a href="#"
+			<a
+				href="#"
 				class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
-				onclick="w3_close()" title="close menu"><i
-				class="fa fa-remove fa-fw"></i> Close Menu</a> <a href="#"
-				class="w3-bar-item w3-button w3-padding w3-blue"><i
-				class="fa fa-users fa-fw"></i>&nbsp;Overview</a> <a href="schedule"
-				class="w3-bar-item w3-button w3-padding"><img
-				src="/UTM/img/calendar.ico" style="width: 16px" alt="" />&nbsp;View
-				Schedule </a> <a class="w3-bar-item w3-button" onclick="openForm()">
-				<img src="/UTM/img/report.ico" style="width: 16px" alt="" />&nbsp;Make
-				a report
-			</a> <a href="#" class="w3-bar-item w3-button w3-padding"><img
-				src="/UTM/img/request.ico" style="width: 16px" alt="" />&nbsp;Requests
-			</a> <a href="#" class="w3-bar-item w3-button w3-padding"><img
-				src="/UTM/img/time.ico" style="width: 16px" alt="" />&nbsp;Hours
-				Worked</a> <a href="#" class="w3-bar-item w3-button w3-padding"><i
-				class="fa fa-bell" aria-hidden="true"></i>&nbsp;Notifications</a> <a
-				href="#" class="w3-bar-item w3-button w3-padding"><i
-				class="fa fa-print" aria-hidden="true"></i>&nbsp;Print Pay Stub</a> <a
-				class="w3-bar-item w3-button" onclick="openForm2()"><img
-				src="/UTM/img/key.ico" style="width: 16px" alt="" />&nbsp;Reset
-				Password</a> <a th:href="@{/logout}"
-				class="w3-bar-item w3-button w3-padding"><i
-				class="fa fa-sign-out"></i>&nbsp;Sign Out </a>
+				onclick="w3_close()"
+				title="close menu"
+			> <i class="fa fa-remove fa-fw"></i> Close Menu
+			</a> <a
+				href="#"
+				class="w3-bar-item w3-button w3-padding w3-blue"
+			> <i class="fa fa-users fa-fw"></i>&nbsp;Overview
+			</a> <a
+				href="schedule"
+				class="w3-bar-item w3-button w3-padding"
+			> <img
+				src="/UTM/img/calendar.ico"
+				style="width: 16px"
+				alt=""
+			/>&nbsp;View Schedule
+			</a> <a
+				class="w3-bar-item w3-button"
+				onclick="openForm()"
+			> <img
+				src="/UTM/img/report.ico"
+				style="width: 16px"
+				alt=""
+			/>&nbsp;Make a report
+			</a> <a
+				href="#"
+				class="w3-bar-item w3-button w3-padding"
+			><img
+				src="/UTM/img/request.ico"
+				style="width: 16px"
+				alt=""
+			/>&nbsp;Requests </a> <a
+				href="#"
+				class="w3-bar-item w3-button w3-padding"
+			><img
+				src="/UTM/img/time.ico"
+				style="width: 16px"
+				alt=""
+			/>&nbsp;Hours Worked</a> <a
+				href="#"
+				class="w3-bar-item w3-button w3-padding"
+			><i
+				class="fa fa-bell"
+				aria-hidden="true"
+			></i>&nbsp;Notifications</a> <a
+				href="#"
+				class="w3-bar-item w3-button w3-padding"
+			><i
+				class="fa fa-print"
+				aria-hidden="true"
+			></i>&nbsp;Print Pay Stub</a> <a
+				class="w3-bar-item w3-button"
+				onclick="openForm2()"
+			><img
+				src="/UTM/img/key.ico"
+				style="width: 16px"
+				alt=""
+			/>&nbsp;Reset Password</a> <a
+				th:href="@{/logout}"
+				class="w3-bar-item w3-button w3-padding"
+			><i class="fa fa-sign-out"></i>&nbsp;Sign Out </a>
 
 			<div class="reportPopup">
-				<div class="formPopup" id="popupForm">
-					<form th:action="@{/report}" method="post" class="formContainer">
+				<div
+					class="formPopup"
+					id="popupForm"
+				>
+					<form
+						th:action="@{/report}"
+						method="post"
+						class="formContainer"
+					>
 						<h2>Shift Report</h2>
 						<label for="report"> <strong>Report</strong>
 						</label>
-						<textarea th:id="report" th:name="report"
-							placeholder="Write something.." style="height: 100px" required></textarea>
-						<input type="hidden" th:id="firstAndLastName"
-							th:name="firstAndLastName" required th:value="${userName}">
-						<button type="submit" class="btn">Send Report</button>
-						<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+						<textarea
+							th:id="report"
+							th:name="report"
+							placeholder="Write something.."
+							style="height: 100px"
+							required
+						></textarea>
+						<input
+							type="hidden"
+							th:id="firstAndLastName"
+							th:name="firstAndLastName"
+							required
+							th:value="${userName}"
+						>
+						<button
+							type="submit"
+							class="btn"
+						>Send Report</button>
+						<button
+							type="button"
+							class="btn cancel"
+							onclick="closeForm()"
+						>Close</button>
 					</form>
 				</div>
 			</div>
 
 			<div class="reportPopup">
-				<div class="formPopup" id="popupForm2">
-					<form th:action="@{/resetP}" method="post" class="formContainer">
+				<div
+					class="formPopup"
+					id="popupForm2"
+				>
+					<form
+						th:action="@{/resetP}"
+						method="post"
+						class="formContainer"
+					>
 						<h2>Reset Password</h2>
 						<label for="pass1"> <strong>New Password</strong>
-						</label> <input type="password" th:id="pass1" placeholder="New Password"
-							name="pass1" required> <label for="pass2"> <strong>Re-Type
-								Password</strong>
-						</label> <input type="password" id="pass2" placeholder="Re-Type Password"
-							name="pass2" required>
-						<button type="submit" class="btn">Update Password</button>
-						<button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+						</label> <input
+							type="password"
+							th:id="pass1"
+							placeholder="New Password"
+							name="pass1"
+							required
+						> <label for="pass2"> <strong>Re-Type Password</strong>
+						</label> <input
+							type="password"
+							id="pass2"
+							placeholder="Re-Type Password"
+							name="pass2"
+							required
+						>
+						<button
+							type="submit"
+							class="btn"
+						>Update Password</button>
+						<button
+							type="button"
+							class="btn cancel"
+							onclick="closeForm2()"
+						>Close</button>
 					</form>
 				</div>
 			</div>
@@ -114,21 +230,34 @@ html, body, h1, h2, h3, h4, h5 {
 
 
 	<!-- Overlay effect when opening sidebar on small screens -->
-	<div class="w3-overlay w3-hide-large w3-animate-opacity"
-		onclick="w3_close()" style="cursor: pointer" title="close side menu"
-		id="myOverlay"></div>
+	<div
+		class="w3-overlay w3-hide-large w3-animate-opacity"
+		onclick="w3_close()"
+		style="cursor: pointer"
+		title="close side menu"
+		id="myOverlay"
+	></div>
 
 	<!-- !PAGE CONTENT! -->
-	<div class="w3-main" style="margin-left: 300px; margin-top: 43px;">
+	<div
+		class="w3-main"
+		style="margin-left: 300px; margin-top: 43px;"
+	>
 
 		<!-- Header -->
-		<header class="w3-container" style="padding-top: 22px">
+		<header
+			class="w3-container"
+			style="padding-top: 22px"
+		>
 			<h5>
 				<b><i class="fa fa-dashboard"></i> My Dashboard</b>
 			</h5>
 		</header>
 
-		<div id="schedule" class="tabcontent">
+		<div
+			id="schedule"
+			class="tabcontent"
+		>
 			<h3>Weekly Schedule</h3>
 			<p>These are the days you are scheduled to work this week.</p>
 			<table class="w3-table w3-striped w3-white">
@@ -163,21 +292,26 @@ html, body, h1, h2, h3, h4, h5 {
 		</div>
 
 
-		<div id="recentreport" class="tabcontent">
+		<div
+			id="recentreport"
+			class="tabcontent"
+		>
 			<h3>Recent Report</h3>
 			<p>This report was generated today</p>
 
 			<option th:each="report : ${reports}">
 				<p>
-					<i th:text="${report.report}"></i> <sub> <i
-						th:text="${report.firstAndLastName}"></i></sub>
+					<i th:text="${report.report}"></i> <sub> <i th:text="${report.firstAndLastName}"></i></sub>
 				</p>
 			</option>
 
 
 		</div>
 
-		<div id="punch" class="tabcontent">
+		<div
+			id="punch"
+			class="tabcontent"
+		>
 			<h3>Last punched-in</h3>
 			<p>You last punched in Yesterday at 8am.</p>
 			<button class="button button4 w3-blue">Clock-In</button>
