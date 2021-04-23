@@ -30,8 +30,15 @@ public class timesheetController {
 	@RequestMapping(value= {"/home/emptimesheet"}, method=RequestMethod.GET)
 	public ModelAndView saveTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
 		ModelAndView model = new ModelAndView();
-		timeSheetService.save(timesheet);
+		//timeSheetService.save(timesheet);
 		model.setViewName("/home/emptimesheet");
+		return model;
+	}
+	
+	@RequestMapping(value= {"/home/admintimesheet"}, method=RequestMethod.GET)
+	public ModelAndView displayTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
+	ModelAndView model = new ModelAndView();
+	model.setViewName("/home/admintimesheet");
 		return model;
 	}
 	
