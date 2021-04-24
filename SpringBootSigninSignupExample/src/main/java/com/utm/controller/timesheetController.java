@@ -41,6 +41,12 @@ public class timesheetController {
 	model.setViewName("/home/admintimesheet");
 		return model;
 	}
+	@RequestMapping(value= {"/home/employeetimesheet"}, method=RequestMethod.GET)
+	public ModelAndView showTimesheet(@ModelAttribute("timesheet") TimeSheet timesheet) {
+	ModelAndView model = new ModelAndView();
+	model.setViewName("/home/employeetimesheet");
+		return model;
+	}
 	
 	
 }

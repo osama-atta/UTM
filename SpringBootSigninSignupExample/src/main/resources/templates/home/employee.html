@@ -29,6 +29,10 @@ html, body, h1, h2, h3, h4, h5 {
 	rel="stylesheet"
 	href="/UTM/css/style.css"
 >
+ <link
+      href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"
+      rel="stylesheet"
+    />
 
 </head>
 <body class="w3-theme-l5">
@@ -259,36 +263,11 @@ html, body, h1, h2, h3, h4, h5 {
 			class="tabcontent"
 		>
 			<h3>Weekly Schedule</h3>
-			<p>These are the days you are scheduled to work this week.</p>
-			<table class="w3-table w3-striped w3-white">
-				<tr>
-					<td><p>
-							<b>MON</b>
-						</p></td>
-					<td>8am-7pm</td>
-					<td><i>10 Hours</i></td>
-				</tr>
-				<tr>
-					<td><b>TUE</b></td>
-					<td>8am-5pm</td>
-					<td><i>8 Hours</i></td>
-				</tr>
-				<tr>
-					<td><b>WED</b></td>
-					<td>8am-6pm</td>
-					<td><i>11 Hours</i></td>
-				</tr>
-				<tr>
-					<td><b>THU</b></td>
-					<td>8am-5pm</td>
-					<td><i>8 Hours</i></td>
-				</tr>
-				<tr>
-					<td><b>FRI</b></td>
-					<td>8am-2pm</td>
-					<td><i>5 Hours</i></td>
-				</tr>
-			</table>
+			<p>These are the days you are scheduled to work.</p>
+			<div id="wrapper"></div>
+
+    <script src="https://unpkg.com/gridjs/dist/gridjs.development.js"></script>
+    <script src="/UTM/js/employeegrid.js"></script>
 		</div>
 
 
