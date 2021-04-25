@@ -36,8 +36,6 @@ public class userController {
 	private ShiftReportService reportService;
 	@Autowired
 	private TimeSheet timesheet;
-	@Autowired
-	private TimeSheetService tservice;
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView landingPage() {
