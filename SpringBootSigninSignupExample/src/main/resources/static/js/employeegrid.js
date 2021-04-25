@@ -4,7 +4,7 @@
 new gridjs.Grid({
   columns: ['Employee Id', 'Date', 'Comments', "Date Submitted", "Start Time", "End Time"],
   server: {
-    url: 'http://localhost:8080/UTM/timesheet/6',
+    url: 'http://localhost:8080/UTM/timesheet/'+EmployeeId,
     then: data => data.map(timesheet => 
       [timesheet.employeeid, timesheet.date, timesheet.comments, timesheet.datesubmitted, timesheet.starttime, timesheet.endtime]
     )
