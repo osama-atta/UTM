@@ -76,7 +76,10 @@ html, body, h1, h2, h3, h4, h5 {
 				class="fa fa-print" aria-hidden="true"></i>&nbsp;Print Pay Stub</a> <a
 				class="w3-bar-item w3-button" onclick="openForm2()"><img
 				src="/UTM/img/key.ico" style="width: 16px" alt="" />&nbsp;Reset
-				Password</a> <a th:href="@{/logout}"
+				Password</a> 
+				<a class="w3-bar-item w3-button" onclick="openForm3()">
+				<img src="/UTM/img/calendar.ico" style="width: 16px" alt="" />&nbsp;Create TimeSheet</a>
+				<a th:href="@{/logout}"
 				class="w3-bar-item w3-button w3-padding"><i
 				class="fa fa-sign-out"></i>&nbsp;Sign Out </a>
 
@@ -111,6 +114,25 @@ html, body, h1, h2, h3, h4, h5 {
 					</form>
 				</div>
 			</div>
+			<div class="reportPopup">
+				<div class="formPopup" id="popupForm3">
+					<form th:action="@{/timesheet/add}" method="POST" class="formContainer" >
+						<h2>Add Record</h2>
+						<label for="report"> <strong>Employe ID</strong>
+						</label>
+						<input type="text" name="employeeid"> <br />
+				date: <input type="text" name="date" placeholder="23 April 2021"></br>
+				comments: <input type="text" name="comments"> <br />
+				datesubmitted: <input type="text" name="datesubmitted" placeholder="23 April 2021"></br>
+				starttime: <input type="text" name="starttime" placeholder="0900"></br>
+				endtime: <input type="text" name="endtime" placeholder="1600"> </br>
+				
+						<button type="submit" class="btn">Create Timesheet</button>
+						<button type="button" class="btn cancel" onclick="closeForm3()">Close</button>
+					</form>
+				</div>
+			</div>
+			
 		</div>
 	</nav>
 
@@ -216,6 +238,13 @@ html, body, h1, h2, h3, h4, h5 {
 		function closeForm2() {
 			document.getElementById("popupForm2").style.display = "none";
 		}
+		function openForm3() {
+			document.getElementById("popupForm3").style.display = "block";
+		}
+		function closeForm3() {
+			document.getElementById("popupForm3").style.display = "none";
+		}
+					
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 	</script>

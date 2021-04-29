@@ -1,6 +1,9 @@
 package com.utm.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,8 +47,9 @@ public class timeSheetRestController {
 	
 	@Operation(summary = "create new timesheet")
 	@PostMapping("/timesheet/add")
-	public TimeSheet createTimeSheetbyEmployeeID(@RequestBody TimeSheet timeSheet) {
-		return timesheetService.save(timeSheet);
+	public ResponseEntity<Void> createTimeSheetbyEmployeeID( TimeSheet timeSheet) throws IOException {
+		timesheetService.save(timeSheet);
+		 return ResponseEntity.noContent().build();
 	}
 	
 }
