@@ -10,6 +10,10 @@
 <style type="text/css">
 html, body, h1, h2, h3, h4, h5 {
 	font-family: "Open Sans", sans-serif
+	
+}
+div#schedule {
+    height: auto;
 }
 </style>
 <head>
@@ -127,7 +131,7 @@ html, body, h1, h2, h3, h4, h5 {
 				starttime: <input type="text" name="starttime" placeholder="0900"></br>
 				endtime: <input type="text" name="endtime" placeholder="1600"> </br>
 				
-						<button type="submit" class="btn">Create Timesheet</button>
+						<button type="submit" class="btn" onclick="closeForm3()">Create Timesheet</button>
 						<button type="button" class="btn cancel" onclick="closeForm3()">Close</button>
 					</form>
 				</div>
@@ -243,6 +247,8 @@ html, body, h1, h2, h3, h4, h5 {
 		}
 		function closeForm3() {
 			document.getElementById("popupForm3").style.display = "none";
+			location.reload();
+			return false;
 		}
 					
 		// Get the element with id="defaultOpen" and click on it
