@@ -36,7 +36,7 @@ public class TestTimeSheet extends UTMTests {
 	}
 	
 	@Test
-	public void testTimeSheet() throws Exception {
+	public void testTimeSheets() throws Exception {
 		mockMvc.perform(get("/UTM/Timesheets")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andExpect(jsonPath("$.id").value("102"))
@@ -46,6 +46,14 @@ public class TestTimeSheet extends UTMTests {
 				.andExpect(jsonPath("$.datesubmitted").value("5 April 2021"))
 				.andExpect(jsonPath("$.starttime").value("0900"))
 				.andExpect(jsonPath("$.endtime").value("1600"));
+		
+	}
+	@Test
+	public void testTimeSheet() throws Exception {
+		mockMvc.perform(get("http://localhost:8080/UTM/timesheet/8")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.id").value("104"))
+				.andExpect(jsonPath("$.employeeid").value("8"));
 		
 	}
 }//end of TestTimeSheet
