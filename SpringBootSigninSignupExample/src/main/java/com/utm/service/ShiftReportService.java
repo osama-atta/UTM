@@ -6,6 +6,6 @@ import com.utm.model.ShiftReport;
 
 public interface ShiftReportService {
 	
-	public void Save(String report, Integer id, String firstAndLastName, ShiftReport reportObj);
+	public ShiftReport Save(String report, Integer id, String firstAndLastName, ShiftReport reportObj);
 	public List<ShiftReport> getReports();
 }

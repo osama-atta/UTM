@@ -43,7 +43,7 @@ public class TestTimeSheet extends UTMTests {
 				.andExpect(jsonPath("$.employeeid").value("6"))
 				.andExpect(jsonPath("$.date").value("6 April 2021"))
 				.andExpect(jsonPath("$.comments").value("1 hr lunch"))
-				.andExpect(jsonPath("$.datesubmitted").value("5 April 2021"))
+	 			.andExpect(jsonPath("$.datesubmitted").value("5 April 2021"))
 				.andExpect(jsonPath("$.starttime").value("0900"))
 				.andExpect(jsonPath("$.endtime").value("1600"));
 		

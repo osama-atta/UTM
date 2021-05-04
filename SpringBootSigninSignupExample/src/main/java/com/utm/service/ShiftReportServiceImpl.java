@@ -22,12 +22,11 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 
 	@Override
-	public void Save(String report, Integer id, String firstAndLastName, ShiftReport reportObj) {
+	public ShiftReport Save(String report, Integer id, String firstAndLastName, ShiftReport reportObj) {
 		reportObj.setReport(report);
 		reportObj.setUserid(id);
 		reportObj.setFirstAndLastName(firstAndLastName);
-		repo.save(reportObj);
-		
+		return repo.save(reportObj);
 	}
 
 }
